@@ -20,6 +20,10 @@ const CONTACTS = [
     }
 ]
 
+const TEC_TAGS = [
+    "NodeJS", "Nestjs", "NextJS", "Tailwind", "Typescript", "Javascript", "Java", "Spring Boot"
+]
+
 export function HeroSection() {
     return (
         <section className="w-full lg:h-[755px] bg-hero-image bg-no-repeat bg-cover flex flex-col justify-end pb-10 sm:pb-32 lg:pb-[110px] py-32">
@@ -31,7 +35,7 @@ export function HeroSection() {
                     <p className="text-gray-400 my-6 text-sm sm:text-base">Sou desenvolvedor fullstack, com mais de 4 anos de experiência. Sou apaixonado em construir soluções, por isso me foco no meu desenvolvimento como desenvolvedor full stack. Saber que o software que eu fiz é utilizado e auxilia verdadeiramente quem o usa </p>
 
                     <div className="flex flex-wrap gap-x-2 gap-y-3 lg:max-w-[340px]">
-                        {Array.from({ length: 5 }).map((_, i) => <TagBadge key={i} name="React" />)}
+                        {TEC_TAGS.map((tech, i) => <TagBadge key={i} name={tech} />)}
                     </div>
                     <div className="flex flex-col sm:flex-row sm:items-center sm:gap-5 mt-6 lg:mt-10">
                         <Button className="w-max shadow-button">
