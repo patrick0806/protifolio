@@ -9,7 +9,7 @@ const NAV_ITEMS = [
     },
     {
         label: 'Projetos',
-        href: '/projects',
+        href: '/projetos',
     },
 ]
 export function Header() {
