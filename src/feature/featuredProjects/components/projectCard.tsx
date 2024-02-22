@@ -1,5 +1,5 @@
 import { Link } from "@/src/components/link";
-import { TagBadge } from "@/src/components/tagBadge";
+import { Tag } from "@/src/components/tag";
 import Image from "next/image";
 import { HiArrowNarrowRight } from "react-icons/hi";
 
@@ -30,12 +30,12 @@ export function ProjectCard() {
 
                 <p className="text-gray-400 my-6">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem molestias harum ea dicta rerum cupiditate voluptate optio doloremque sapiente soluta, velit reprehenderit modi accusamus repellat enim laborum perspiciatis quaerat praesentium molestiae. Quam harum minima commodi alias velit dolorum incidunt perferendis voluptas voluptatibus? Quia beatae, explicabo dolorum in fuga fugiat perferendis.</p>
                 <div className="flex gap-x-2 gap-y-3 flex-wrap mb-8 lg:max-w-[350px]">
-                    <TagBadge name="Typescript" />
-                    <TagBadge name="NextJS" />
-                    <TagBadge name="NestJS" />
-                    <TagBadge name="Tailwind" />
-                    <TagBadge name="PostgreSQL" />
-                    <TagBadge name="Docker" />
+                    <Tag name="Typescript" />
+                    <Tag name="NextJS" />
+                    <Tag name="NestJS" />
+                    <Tag name="Tailwind" />
+                    <Tag name="PostgreSQL" />
+                    <Tag name="Docker" />
                 </div>
 
                 <Link href="/projetos/wealth-wizard">

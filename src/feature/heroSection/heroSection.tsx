@@ -3,7 +3,7 @@ import Image from "next/image";
 import { HiArrowNarrowRight } from "react-icons/hi";
 import { TbBrandGithub, TbBrandLinkedin, TbBrandWhatsapp } from "react-icons/tb";
 import { Button } from "@/src/components/button";
-import { TagBadge } from "@/src/components/tagBadge";
+import { Tag } from "@/src/components/tag";
 
 const CONTACTS = [
     {
@@ -35,7 +35,7 @@ export function HeroSection() {
                     <p className="text-gray-400 my-6 text-sm sm:text-base">Sou desenvolvedor fullstack, com mais de 4 anos de experiência. Sou apaixonado em construir soluções, por isso me foco no meu desenvolvimento como desenvolvedor full stack. Saber que o software que eu fiz é utilizado e auxilia verdadeiramente quem o usa </p>
 
                     <div className="flex flex-wrap gap-x-2 gap-y-3 lg:max-w-[340px]">
-                        {TEC_TAGS.map((tech, i) => <TagBadge key={i} name={tech} />)}
+                        {TEC_TAGS.map((tech, i) => <Tag key={i} name={tech} />)}
                     </div>
                     <div className="flex flex-col sm:flex-row sm:items-center sm:gap-5 mt-6 lg:mt-10">
                         <Button className="w-max shadow-button">
