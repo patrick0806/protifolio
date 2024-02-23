@@ -14,6 +14,8 @@ import {
     TbBrandMongodb,
     TbCoffee
 } from "react-icons/tb";
+import { KnownTech } from "@/src/types/projects";
+import { CMSIcon } from "@/src/components/cmsIcon";
 
 const knowTechs = [
     {
@@ -58,13 +60,24 @@ const knowTechs = [
     }
 ]
 
-export function KnowTechs() {
+type KnowTechsProps = {
+    techs: KnownTech[]
+}
+
+export function KnowTechs({ techs }: KnowTechsProps) {
     return (
         <section className="container py-16 ">
             <SectionTitle subtitle="competencias" title="Conhecimentos" />
             <div className="pt-3 grid grid-cols-[repeat(auto-fit,minmax(264px,1fr))] gap-3">
-                {knowTechs.map(tech => (
-                    <KnowTechCard key={tech.name} tech={tech} />
+                {techs.map(tech => (
+                    <KnowTechCard
+                        key={tech.name}
+                        tech={{
+                            icon: <CMSIcon icon={tech.iconSvg} />,
+                            name: tech.name,
+                            startDate: tech.startDate
+                        }}
+                    />
                 ))}
             </div>
         </section>
