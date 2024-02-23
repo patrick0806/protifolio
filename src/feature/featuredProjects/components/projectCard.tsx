@@ -1,15 +1,16 @@
 import { Link } from "@/src/components/link";
 import { Tag } from "@/src/components/tag";
+import { Project } from "@/src/types/projects";
 import Image from "next/image";
 import { HiArrowNarrowRight } from "react-icons/hi";
 
-export function ProjectCard() {
+export function ProjectCard({ project }: { project: Project }) {
     return (
         <div className="flex gap-6 lg:gap-12 flex-col lg:flex-row">
             <div className="w-full h-full">
                 <Image
-                    src="https://picsum.photos/1280/720"
-                    alt="thumbnail do projeto wealth wizard"
+                    src={project.thumbnail.url}
+                    alt={`Thumbnail do projeto ${project.title}`}
                     width={420}
                     height={304}
                     className="w-full h-[200px] sm:h-[300px] lg:h-[420px] lg:min-h-full object-cover rounded-lg"
@@ -25,20 +26,15 @@ export function ProjectCard() {
                         src="/images/icons/project-title-icon.svg"
                         className="inline-block mr-2"
                     />
-                    Wealth Wizard
+                    {project.title}
                 </h3>
 
-                <p className="text-gray-400 my-6">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem molestias harum ea dicta rerum cupiditate voluptate optio doloremque sapiente soluta, velit reprehenderit modi accusamus repellat enim laborum perspiciatis quaerat praesentium molestiae. Quam harum minima commodi alias velit dolorum incidunt perferendis voluptas voluptatibus? Quia beatae, explicabo dolorum in fuga fugiat perferendis.</p>
+                <p className="text-gray-400 my-6">{project.shortDescription}</p>
                 <div className="flex gap-x-2 gap-y-3 flex-wrap mb-8 lg:max-w-[350px]">
-                    <Tag name="Typescript" />
-                    <Tag name="NextJS" />
-                    <Tag name="NestJS" />
-                    <Tag name="Tailwind" />
-                    <Tag name="PostgreSQL" />
-                    <Tag name="Docker" />
+                    {project.technologies.map((tech) => <Tag key={`${project.title}-tech-${tech.name}`} name={tech.name} />)}
                 </div>
 
-                <Link href="/projetos/wealth-wizard">
+                <Link href={`/projetos/${project.slug}`}>
                     Ver projeto
                     <HiArrowNarrowRight size={18} />
                 </Link>

@@ -11,8 +11,9 @@ export function RichText({ ...props }: RichTextProps) {
                 bold: ({ children }) => (
                     <b className="text-gray-50 font-medium">{children}</b>
                 ),
+                p: ({ children }) => <p className="text-gray-400 mb-4">{children}</p>,
                 ul: ({ children }) => (
-                    <ul className="list-disc list-inside pl-2 flex flex-col gap-1">
+                    <ul className="list-disc list-inside pl-2 flex flex-col gap-1 mt-2">
                         {children}
                     </ul>
                 ),
