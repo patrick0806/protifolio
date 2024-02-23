@@ -1,3 +1,4 @@
+'use client';
 import Image from "next/image";
 
 import { HiArrowNarrowRight } from "react-icons/hi";
@@ -25,6 +26,12 @@ const TEC_TAGS = [
 ]
 
 export function HeroSection() {
+    const handleContact = () => {
+        const contactSection = document.querySelector('#contact');
+        if (contactSection) {
+            contactSection.scrollIntoView({ behavior: 'smooth' });
+        }
+    }
     return (
         <section className="w-full lg:h-[755px] bg-hero-image bg-no-repeat bg-cover flex flex-col justify-end pb-10 sm:pb-32 lg:pb-[110px] py-32">
             <div className="container flex items-start justify-between flex-col-reverse lg:flex-row">
@@ -38,7 +45,7 @@ export function HeroSection() {
                         {TEC_TAGS.map((tech, i) => <Tag key={i} name={tech} />)}
                     </div>
                     <div className="flex flex-col sm:flex-row sm:items-center sm:gap-5 mt-6 lg:mt-10">
-                        <Button className="w-max shadow-button">
+                        <Button className="w-max shadow-button" onClick={handleContact}>
                             Entre em contato
                             <HiArrowNarrowRight size={18} />
                         </Button>
