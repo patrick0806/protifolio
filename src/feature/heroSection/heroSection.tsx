@@ -2,30 +2,14 @@
 import Image from "next/image";
 
 import { HiArrowNarrowRight } from "react-icons/hi";
-import { TbBrandGithub, TbBrandLinkedin, TbBrandWhatsapp } from "react-icons/tb";
 import { Button } from "@/src/components/button";
 import { Tag } from "@/src/components/tag";
+import { HomePageInfo } from "@/src/types/pageInfo";
+import { RichText } from "@/src/components/richText";
+import { CMSIcon } from "@/src/components/cmsIcon";
 
-const CONTACTS = [
-    {
-        url: 'https://github.com/patrick0806',
-        icon: <TbBrandGithub />
-    },
-    {
-        url: 'https://www.linkedin.com/in/patrick-nicezi/',
-        icon: <TbBrandLinkedin />
-    },
-    {
-        url: 'https://wa.me/5519993912304',
-        icon: <TbBrandWhatsapp />
-    }
-]
-
-const TEC_TAGS = [
-    "NodeJS", "Nestjs", "NextJS", "Tailwind", "Typescript", "Javascript", "Java", "Spring Boot"
-]
-
-export function HeroSection() {
+export function HeroSection({ data }: { data: HomePageInfo }) {
+    const { introduction, technologies, socials, profilePicture } = data;
     const handleContact = () => {
         const contactSection = document.querySelector('#contact');
         if (contactSection) {
@@ -39,10 +23,12 @@ export function HeroSection() {
                     <p className="font-mono text-emerald-400">Olá meu nome é</p>
                     <h2 className="text-4xl font-medium mt-2">Patrick Nicezi</h2>
 
-                    <p className="text-gray-400 my-6 text-sm sm:text-base">Sou desenvolvedor fullstack, com mais de 4 anos de experiência. Sou apaixonado em construir soluções, por isso me foco no meu desenvolvimento como desenvolvedor full stack. Saber que o software que eu fiz é utilizado e auxilia verdadeiramente quem o usa </p>
+                    <div className="text-gray-400 my-6 text-sm sm:text-base">
+                        <RichText content={introduction.raw} />
+                    </div>
 
                     <div className="flex flex-wrap gap-x-2 gap-y-3 lg:max-w-[340px]">
-                        {TEC_TAGS.map((tech, i) => <Tag key={i} name={tech} />)}
+                        {technologies.map((tech) => <Tag key={tech.name} name={tech.name} />)}
                     </div>
                     <div className="flex flex-col sm:flex-row sm:items-center sm:gap-5 mt-6 lg:mt-10">
                         <Button className="w-max shadow-button" onClick={handleContact}>
@@ -51,14 +37,14 @@ export function HeroSection() {
                         </Button>
 
                         <div className="text-gray-600 text-2xl flex items-center h-20 gap-3">
-                            {CONTACTS.map((contact, i) =>
+                            {socials.map((contact, i) =>
                                 <a
                                     href={contact.url}
                                     key={`contact-${i}`}
                                     target="_blank"
                                     className="hover:text-gray-100 transition-colors"
                                 >
-                                    {contact.icon}
+                                    <CMSIcon icon={contact.iconSvg} />
                                 </a>
                             )}
                         </div>
@@ -67,9 +53,9 @@ export function HeroSection() {
                 <Image
                     width={420}
                     height={404}
-                    src="/images/profile-pic.png"
+                    src={profilePicture.url}
                     alt="Foto de perfil do Patrick Nicezi"
-                    className="w-[300px] h-[320] lg:w-[420px] lg:h-[404] mb-6 lg:mb-0 shadow-2xl rounded-lg object-cover"
+                    className="w-[300px] h-[320] lg:w-[420px] lg:h-[404] mb-6 lg:mb-0 shadow-2xl rounded-lg object-cover bg-gray-50/85"
                 />
             </div>
         </section>
