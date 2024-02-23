@@ -20,7 +20,10 @@ const plexMono = IBM_Plex_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'Patrick Nicezi | Desenvolvedor Fullstack',
+  title: {
+    default: 'Home | Patrick da Silva Nicezi - Desenvolvedor Fullstack',
+    template: '%s | Patrick da Silva Nicezi - Desenvolvedor Fullstack',
+  },
   description: 'Desenvolvedor Fullstack - NodeJS - NestJS - ReactJS - NextJS',
 }
 

@@ -6,7 +6,7 @@ import { HomePageData } from "../types/pageInfo";
 import { fetchHygraphQuery } from "../utils/fetchHygraphQuery";
 
 const getPageData = async (): Promise<HomePageData> => {
-  const query = /*`
+  const query = `
     query PageInfoQuery {
       page(where: {slug: "home"}) {
         introduction {
@@ -55,58 +55,7 @@ const getPageData = async (): Promise<HomePageData> => {
           name
         }
       }
-    }
-  `*/`
-  query PageInfoQuery {
-    page(where: {slug: "home"}) {
-      introduction {
-        raw
-      }
-      technologies {
-        name
-      }
-      profilePicture {
-        url
-      }
-      socials {
-        url
-        iconSvg
-      }
-      knownTechs {
-        iconSvg
-        name
-        startDate
-      }
-      highlightProjects {
-        slug
-        thumbnail {
-          url
-        }
-        title
-        shortDescription
-        technologies {
-          name
-        }
-      }
-    }
-    workExperiences {
-      companyLogo {
-        url
-      }
-      role
-      companyName
-      companyUrl
-      startDate
-      endDate
-      description {
-        raw
-      }
-      technologies {
-        name
-      }
-    }
-  }
-  `
+    }`
 
   return fetchHygraphQuery(
     query,

@@ -2,6 +2,7 @@ import { ProjectDetails } from "@/src/feature/projectDetails/projectDetails";
 import { ProjectSections } from "@/src/feature/projectDetails/projectSections";
 import { ProjectPageData, ProjectsPageStaticData } from "@/src/types/pageInfo";
 import { fetchHygraphQuery } from "@/src/utils/fetchHygraphQuery";
+import { Metadata } from "next";
 
 
 type ProjectProps = {
@@ -69,8 +70,24 @@ export async function generateStaticParams() {
     query,
     1000 * 60 * 60 * 24, // 1 day
   )
-  console.log(projects);
   return projects.map(project => ({
     slug: project.slug
   }))
+}
+
+export async function generateMetadata({ params: { slug } }: ProjectProps): Promise<Metadata> {
+  const { project } = await getProjectDetails(slug);
+  return {
+    title: project.title,
+    description: project.description.text,
+    openGraph: {
+      images: [
+        {
+          url: project.pageThumbnail.url,
+          width: 1200,
+          height: 630,
+        }
+      ]
+    }
+  }
 }
