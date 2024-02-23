@@ -9,7 +9,7 @@ export function ProjectList({ projects }: { projects: Project[] }) {
                 <div
                     key={project.title}
                 >
-                    <Link href={`/projectos/${project.slug}`}>
+                    <Link href={`/projetos/${project.slug}`}>
                         <ProjectCard project={project} />
                     </Link>
                 </div>
