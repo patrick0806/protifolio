@@ -26,7 +26,7 @@ export function Experience() {
                         className="text-gray-500"
                     > @ Ioasys</Link>
                     <h4 className="text-gray-400">Desenvolvedor Fullstack</h4>
-                    <span className="text-gray-500">jan 2022 * O momento * (2 anos)</span>
+                    <span className="text-gray-500">jan 2022 • O momento • (2 anos)</span>
                     <p className="text-gray-400">
                         Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta hic quod saepe velit nobis voluptates accusamus neque labore vitae quia, optio odio magnam ullam exercitationem est laboriosam eius? Placeat, veritatis.
                     </p>
