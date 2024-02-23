@@ -1,18 +1,19 @@
 import Link from "next/link";
 import { ProjectCard } from "./components/projectCard";
+import { Project } from "@/src/types/projects";
 
-export function ProjectList() {
+export function ProjectList({ projects }: { projects: Project[] }) {
     return (
         <section className="container py-32 grid grid-cols-1 sm:grid-cols-[repeat(auto-fit,minmax(350px,1fr))] gap-x-4 gap-y-6">
-            <Link href="/projetos/wealth-wizard">
-                <ProjectCard />
-            </Link>
-            <Link href="/projetos/wealth-wizard">
-                <ProjectCard />
-            </Link>
-            <Link href="/projetos/wealth-wizard">
-                <ProjectCard />
-            </Link>
+            {projects.map((project, i) => (
+                <div
+                    key={project.title}
+                >
+                    <Link href={`/projectos/${project.slug}`}>
+                        <ProjectCard project={project} />
+                    </Link>
+                </div>
+            ))}
         </section>
     )
 }
