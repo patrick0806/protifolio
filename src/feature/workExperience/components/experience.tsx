@@ -3,7 +3,7 @@ import { RichText } from "@/src/components/richText";
 import { Tag } from "@/src/components/tag";
 import { WorkExperience } from "@/src/types/workExperience";
 import { differenceInMonths, differenceInYears, format } from "date-fns";
-import ptBR from "date-fns/locale/pt-BR";
+import { ptBR } from "date-fns/locale";
 import Image from "next/image";
 
 function formatTimeDuration(startDate: string, endDate: string) {
