@@ -6,7 +6,7 @@ export const Footer = () => {
             <span
                 className='flex items-center gap-1.5 text-sx sm:text-sm font-mono text-gray-400'
             >
-                Made by <IoMdHeart size={13} className='text-emerald-500' /> by
+                Made with <IoMdHeart size={13} className='text-emerald-500' /> by
                 <strong className='font-medium'>
                     Patrick da Silva Nicezi
                 </strong>
