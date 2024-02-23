@@ -7,6 +7,8 @@ import { Button } from "./button";
 import { useForm, Controller } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from '@hookform/resolvers/zod';
+import axios from "axios";
+import toast from "react-hot-toast";
 
 const contactFormSchema = z.object({
     name: z.string().min(1, { message: "Nome obrigatorio" }),
@@ -15,7 +17,7 @@ const contactFormSchema = z.object({
 })
 
 export function ContactForm() {
-    const { handleSubmit, control, register, formState: { errors } } = useForm<z.infer<typeof contactFormSchema>>({
+    const { handleSubmit, control, register, reset, formState: { errors, isSubmitting } } = useForm<z.infer<typeof contactFormSchema>>({
         resolver: zodResolver(contactFormSchema),
         defaultValues: {
             name: '',
@@ -23,8 +25,14 @@ export function ContactForm() {
             message: '',
         }
     });
-    const onSubmit = (data: any) => {
-        console.log(data);
+    const onSubmit = async (data: any) => {
+        try {
+            await axios.post('/api/contact', data);
+            toast.success("Mensagem enviada com sucesso!")
+            reset()
+        } catch (error) {
+            toast.error("Ocorreu um erro ao enviar a mensagem. Tente novamente mais tarde.")
+        }
     }
     return (
         <section className="py-16 px-6 md:py-34 flex items-center justify-center bg-gray-950" id="contact">
@@ -48,7 +56,7 @@ export function ContactForm() {
                             />
                         )}
                     />
-                    {errors.email && <p className="text-red-500 text-sm">{errors.email.message}</p>}
+                    {errors.name && <p className="text-red-500 text-sm">{errors.name.message}</p>}
 
                     <Controller
                         name="email"
@@ -57,7 +65,7 @@ export function ContactForm() {
                             <Input placeholder="Email" {...field} />
                         )}
                     />
-                    {errors.message && <p className="text-red-500 text-sm">{errors.message.message}</p>}
+                    {errors.email && <p className="text-red-500 text-sm">{errors.email.message}</p>}
 
                     <textarea
                         placeholder="Mensagem"
@@ -65,9 +73,9 @@ export function ContactForm() {
                         maxLength={500}
                         {...register("message")}
                     />
-                    {errors.name && <p className="text-red-500 text-sm">{errors.name.message}</p>}
+                    {errors.message && <p className="text-red-500 text-sm">{errors.message.message}</p>}
 
-                    <Button className="mt-6 w-max mx-auto shadow-button">
+                    <Button className="mt-6 w-max mx-auto shadow-button" disabled={isSubmitting}>
                         Enviar mensagem
                         <HiArrowNarrowRight size={18} />
                     </Button>
