@@ -1,3 +1,5 @@
+'use client'
+
 import { Link } from "@/src/components/link";
 import { RichText } from "@/src/components/richText";
 import { Tag } from "@/src/components/tag";
@@ -5,6 +7,8 @@ import { WorkExperience } from "@/src/types/workExperience";
 import { differenceInMonths, differenceInYears, format } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import Image from "next/image";
+import { motion } from 'framer-motion';
+import { fadeUpAnimation, tagAnimation } from "@/src/lib/animation";
 
 function formatTimeDuration(startDate: string, endDate: string) {
     const end = endDate ? new Date(endDate) : new Date();
@@ -29,7 +33,11 @@ export function Experience({ experience }: { experience: WorkExperience }) {
 
     const formattedDuration = formatTimeDuration(experience.startDate, experience.endDate)
     return (
-        <div className="grid grid-cols-[40px,1fr] gap-4 md:gap-10">
+        <motion.div
+            className="grid grid-cols-[40px,1fr] gap-4 md:gap-10"
+            {...fadeUpAnimation}
+            transition={{ duration: 0.5 }}
+        >
             <div className="flex flex-col items-center gap-4">
                 <div className="rounded-full border border-gray-500 p-0.5">
                     <Image
@@ -57,10 +65,17 @@ export function Experience({ experience }: { experience: WorkExperience }) {
 
                     <p className="text-gray-400 text-sm mb-3 mt-6 font-semibold">Competências</p>
                     <div className="flex gap-x-2 gap-y-3 flex-wrap lg:max-w-[350px] mb-8">
-                        {experience.technologies.map((tech) => <Tag key={`${experience.companyName}-tech-${tech.name}`} name={tech.name} />)}
+                        {experience.technologies.map((tech, idx) => (
+                            <Tag
+                                key={`${experience.companyName}-tech-${tech.name}`}
+                                name={tech.name}
+                                {...tagAnimation}
+                                transition={{ duration: 0.2, delay: 0.1 * idx }}
+                            />
+                        ))}
                     </div>
                 </div>
             </div>
-        </div>
+        </motion.div>
     )
 }
